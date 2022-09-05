@@ -14,9 +14,9 @@
 
 
 -- Listage de la structure de la base pour gsc-app
-DROP DATABASE IF EXISTS `gsc-app`;
-CREATE DATABASE IF NOT EXISTS `gsc-app` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci */;
-USE `gsc-app`;
+DROP DATABASE IF EXISTS `camlait-app`;
+CREATE DATABASE IF NOT EXISTS `camlait-app` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci */;
+USE `camlait-app`;
 
 -- Listage de la structure de la table gsc-app. categories
 DROP TABLE IF EXISTS `categories`;

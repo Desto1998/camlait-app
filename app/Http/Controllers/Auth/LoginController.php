@@ -47,18 +47,7 @@ class LoginController extends Controller
         if (auth()->attempt(['email' => $request->input('email'), 'password' => $request->input('password')], $remember_me))
         {
             $user = auth()->user();
-            $data = [];
-            $iduser = Auth::user()->id;
-            $menu = User_menus::join('menus','menus.menu_id','user_menus.idmenu')
-                ->where('user_menus.userid',$iduser)
-                ->select('menus.code')
-                ->get()
-            ;
-            foreach ($menu as $key=>$item){
-                $data[$key] = $item->code;
-            }
-            session()->regenerate();
-            session(['USERMENU' => $data]);
+
             return back();
 //            dd($user);
 

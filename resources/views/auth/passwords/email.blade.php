@@ -31,7 +31,7 @@
 
 
                                         <div class="text-center">
-                                            <button type="submit" class="btn btn-primary btn-block">
+                                            <button type="submit" class="btn btn-info btn-block">
                                                 {{ __('Envoyer le lien') }}
                                             </button>
                                                 <a class="btn btn-link" href="{{ route('login') }}">

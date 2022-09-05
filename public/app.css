@@ -110,7 +110,7 @@ select{
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover;
-    background: url('images/bg/bg1.jpg') no-repeat center center fixed;
+    /*background: url('images/bg/bg1.jpg') no-repeat center center fixed;*/
     /*background-size: 1470px; */
     height: 100%;
 

@@ -40,11 +40,9 @@
                                     <th>#</th>
                                     <th>Date</th>
                                     <th>Raison</th>
-                                    <th>Charge</th>
                                     <th>Quantité</th>
                                     <th>Prix.U</th>
                                     <th>Total</th>
-                                    <th>Statut</th>
                                     {{--                                    <th>Statut</th>--}}
                                     {{--                                    <th>Créer le</th>--}}
                                     <th>Crée Par</th>
@@ -141,11 +139,9 @@
                     {data: 'DT_RowIndex', name: 'DT_RowIndex'},
                     {data: 'date_debut', name: 'date_debut'},
                     {data: 'raison', name: 'raison'},
-                    {data: 'titre', name: 'titre'},
                     {data: 'nombre', name: 'nombre'},
                     {data: 'prix', name: 'prix'},
                     {data: 'total', name: 'total'},
-                    {data: 'statut', name: 'statut'},
                     {data: 'firstname', name: 'firstname'},
                     {data: 'action', name: 'action', orderable: false, searchable: false},
 
@@ -299,20 +295,23 @@
                         dataType: 'json',
                         success: function (res) {
                             if (res){
-                                switch (res){
-                                    case 1:
-                                        toastr.success("Effectué avec succès!");
-                                        loadTaches();
-                                    break;
-                                    case -1:
-                                        swal.fire("Attention!", "Le solde de la caisse est insufisant pour effectuer cette action!", "warning")
-                                    break;
-                                    case -2:
-                                        toastr.warning("Une erreur s'est produit.","Désolé!");
-                                    break;
-                                    default : toastr.error("Impossible de realiser l'operation.","Erreur!");
-                                }
+                                toastr.success("Effectué avec succès!");
+                                // switch (res){
+                                //     case 1:
+                                //         toastr.success("Effectué avec succès!");
+                                //         loadTaches();
+                                //     break;
+                                //     case -1:
+                                //         swal.fire("Attention!", "Le solde de la caisse est insufisant pour effectuer cette action!", "warning")
+                                //     break;
+                                //     case -2:
+                                //         toastr.warning("Une erreur s'est produit.","Désolé!");
+                                //     break;
+                                //     default : toastr.error("Impossible de realiser l'operation.","Erreur!");
+                                // }
 
+                            }else{
+                                toastr.warning("Une erreur s'est produit.","Désolé!");
                             }
                         },
                         error: function (resp) {

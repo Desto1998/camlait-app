@@ -5,19 +5,19 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Taches extends Model
+class Personnels extends Model
 {
     use HasFactory;
-    protected $primaryKey = 'tache_id';
+    protected $primaryKey = 'personnel_id';
     protected $fillable = [
-        'date_debut',
-        'date_fin',
+        'code',
+        'nom',
+        'prenom',
+        'poste',
+        'email_p',
+        'tel',
+        'adresse_p',
         'date_ajout',
-        'raison',
         'iduser',
-        'statut',
-//        'idcharge',
-        'prix',
-        'nombre',
     ];
 }

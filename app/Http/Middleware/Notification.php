@@ -17,9 +17,9 @@ class Notification
     public function handle(Request $request, Closure $next)
     {
 
-        if (!in_array('NT',\App\Models\User_menus::getUserMenu())) {
-            return redirect()->back()->with('danger','Désolé vous ne pouvez pas accèder à ce menu.');
-        }
+//       if (!in_array('NT',\App\Models\User_menus::getUserMenu())) {
+//             return redirect()->back()->with('danger','Désolé vous ne pouvez pas accèder à ce menu.');
+//        }
         return $next($request);
     }
 }

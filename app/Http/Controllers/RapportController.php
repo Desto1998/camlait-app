@@ -18,24 +18,20 @@ class RapportController extends Controller
         return view('rapport.charge_form',compact('charges'));
     }
     //Show vente form
-    protected function showVenteForm(){
 
-        return view('rapport.vente_form');
-    }
 
     // Make pdf for charge
     protected function printCharge(Request $request){
         $request->validate([
            'debut'=>['required'],
            'fin'=>['required'],
-           'charge'=>['required']
+//           'charge'=>['required']
         ]);
         $titre = $request->titre;
         $debut = $request->debut;
         $fin = $request->fin;
         if ($request->charge==0) {
-            $data = Taches::join('charges','charges.charge_id','taches.idcharge')
-                ->where('date_debut','<=',$request->fin)
+            $data = Taches::where('date_debut','<=',$request->fin)
                 ->where('date_debut','>=',$request->debut)
                 ->orderBy('taches.date_ajout','desc' )
                 ->get()
@@ -44,7 +40,6 @@ class RapportController extends Controller
             $data = Taches::where('date_debut','<=',$request->fin)
                 ->where('date_debut','>=',$request->debut)
                 ->where('tache_id',$request->charge)
-                ->join('charges','charges.charge_id','taches.idchage')
                 ->orderBy('taches.date_ajout','desc' )
                 ->get();
             ;
@@ -60,29 +55,4 @@ class RapportController extends Controller
         return $pdf->stream('Rapport_des_charges_du' . $request->debut . '_au_' . $request->fin . '.pdf');
     }
 
-    public function printVente(Request $request){
-        $request->validate([
-            'debut'=>['required'],
-        ]);
-        $titre = $request->titre;
-        $debut = $request->debut;
-        $fin = $request->fin;
-        if ($request->fin) {
-            $data = Factures::where('created_at','<=',$fin)->where('created_at','>=',$debut)->get();
-
-        }else{
-            $data = Factures::where('created_at',$debut)->get();
-        }
-
-        $users= User::all();
-        $clients= Clients::all();
-        $mois = (new \App\Models\Month)->getFrenshMonth((int)date('m'));
-        $pdf = PDF::loadView('rapport.print_vente',
-            compact('users','titre','data','debut','clients','mois','fin'))->setPaper('a4', 'landscape')->setWarnings(false);
-
-//                $pdf->download('Rapport_des_charge_du'.$request->jour);
-
-        return $pdf->stream('Rapport_des_vente' . $request->debut . '_au_' . $request->fin . '.pdf');
-
-    }
 }

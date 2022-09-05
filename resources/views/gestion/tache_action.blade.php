@@ -7,13 +7,7 @@
             class="fa fa-edit"></i>
     </a>
 
-    @if ($value->statut==0)
-        <a href="javascript:void(0);"
-           {{ Auth::user()->id!=$value->iduser?'disabled':'' }} class="btn btn-success btn-sm ml-1"
-           title="Marquer comme effectué" onclick="markTaskAsDoneFun({{ $value->tache_id }})">
-            <i class="fa fa-check"></i>
-        </a>
-    @endif
+
     @if (Auth::user()->is_admin==1)
         <button class="btn btn-danger btn-sm ml-1 "
                 title="Supprimer cette dépense" id="deletebtn{{ $value->tache_id }}"
@@ -67,18 +61,6 @@
 
 
                     <div class="form-group">
-                        <label for="charge{{ $value->tache_id }}">Charges <span
-                                class="text-danger">*</span></label>
-                        <select class="dropdown-groups form-control" required name="idcharge"
-                                id="charge{{ $value->tache_id }}">
-
-                            @foreach($charges as $item)
-                                <option
-                                    {{ $item->charge_id==$value->idcharge?'selected':'' }} value="{{ $item->charge_id }}">{{ $item->titre }}</option>
-                            @endforeach
-                        </select>
-                    </div>
-                    <div class="form-group">
                         <label for="date_debut{{ $value->tache_id }}">Date <span
                                 class="text-danger">*</span></label>
                         <input type="date" name="date_debut"
@@ -87,13 +69,7 @@
                                class="form-control">
                     </div>
                     <input type="hidden" name="statut" value="{{ $value->statut }}">
-{{--                    <div class="form-group">--}}
-{{--                        <label for="statut{{ $value->tache_id }}">Statut <span class="text-danger">*</span></label>--}}
-{{--                        <select class="form-control" required name="statut" id="statut{{ $value->tache_id }}">--}}
-{{--                            <option {{ $value->statut==1?'selected':'' }} value="1">Effectué</option>--}}
-{{--                            <option {{ $value->statut==0?'selected':'' }} value="0">Mettre attente</option>--}}
-{{--                        </select>--}}
-{{--                    </div>--}}
+
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary"
                                 data-dismiss="modal">Annuler

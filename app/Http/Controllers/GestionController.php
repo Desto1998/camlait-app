@@ -22,95 +22,31 @@ class GestionController extends Controller
 //        $charges = Charges::join('users','users.id','charges.iduser')->orderBy('charges.created_at','desc' )->get();
         return view('gestion.charges');
     }
-
-    public function loadCharges(){
-        if (request()->ajax()) {
-
-            $data =Charges::join('users','users.id','charges.iduser')->orderBy('charges.created_at','desc' )->get();
-            return Datatables::of($data)
-                ->addIndexColumn()
-                ->addColumn('type', function($value){
-                    $type = '<span class="text-primary">Charge variable</span>';
-                    if ($value->type_charge==1) {
-                        $type = '<span class="text-success"> Charge fixe</span>';
-                    }
-//                    $actionBtn = '<div class="d-flex"><a href="javascript:void(0)" class="edit btn btn-warning btn-sm"><i class="fa fa-edit"></i></a> <a href="javascript:void(0)" class="delete btn btn-danger btn-sm ml-1"  onclick="deleteFun()"><i class="fa fa-trash"></i></a></div>';
-                    return $type;
-                })
-                ->addColumn('action', function($value){
-                    $action = view('gestion.charge_action',compact('value'));
-
-//                    $actionBtn = '<div class="d-flex"><a href="javascript:void(0)" class="edit btn btn-warning btn-sm"><i class="fa fa-edit"></i></a> <a href="javascript:void(0)" class="delete btn btn-danger btn-sm ml-1"  onclick="deleteFun()"><i class="fa fa-trash"></i></a></div>';
-                    return (string)$action;
-                })
-                ->rawColumns(['action','type'])
-                ->make(true);
-
-        }
-        return false;
-    }
-    // Store or edit function
-    protected function storeCharge(Request $request)
-    {
-        $request->validate([
-            'titre' => ['required', 'string', 'min:3',],
-        ]);
-        $iduser = Auth::user()->id;
-        $dataId = $request->charge_id;
-        $jourAlerte = 0;
-        if ($request->alerte) {
-            $jourAlerte = $request->alerte;
-        }
-        $save = Charges::updateOrCreate(
-            ['charge_id' => $dataId],
-            [
-                'titre' => $request->titre,
-                'description' => $request->description,
-                'type_charge' => $request->type_charge,
-                'alerte' => $jourAlerte,
-                'iduser' => $iduser,
-
-            ])
-        ;
-        return Response()->json($save);
-//        if ($save) {
-//            return redirect()->back()->with('success','Enregistré avec succès!');
-//
-//        }
-//        return redirect()->back()->with('danger', "Désolé une erreur s'est produite. Veillez recommencer!");
-    }
-    protected function deleteCharge(Request $request){
-        $delete = Charges::where('charge_id',$request->id)->delete();
-        return Response()->json($delete);
-    }
-
     // fontion pour les taches
     public function taches()
     {
-        $charges = Charges::all();
-        return view('gestion.taches',compact('charges'));
+        return view('gestion.taches');
     }
 public function loadTaches(){
     if (request()->ajax()) {
 
-        $data = Taches::join('charges','charges.charge_id','taches.idcharge')
-            ->join('users','users.id','charges.iduser')
+        $data = Taches::join('users','users.id','taches.iduser')
             ->orderBy('taches.date_ajout','desc' )
             ->get();
 
         return Datatables::of($data)
             ->addIndexColumn()
-            ->addColumn('statut', function($value){
-                $type = '<span class="text-warning">En attente</span>';
-                if ($value->statut==1) {
-                    $type = '<span class="text-success"> Effectué</span>';
-                }
-                if ($value->statut==2) {
-                    $type = '<span class="text-primary"> Non en caisse</span>';
-                }
-//                    $actionBtn = '<div class="d-flex"><a href="javascript:void(0)" class="edit btn btn-warning btn-sm"><i class="fa fa-edit"></i></a> <a href="javascript:void(0)" class="delete btn btn-danger btn-sm ml-1"  onclick="deleteFun()"><i class="fa fa-trash"></i></a></div>';
-                return $type;
-            })
+//            ->addColumn('statut', function($value){
+//                $type = '<span class="text-warning">En attente</span>';
+//                if ($value->statut==1) {
+//                    $type = '<span class="text-success"> Effectué</span>';
+//                }
+//                if ($value->statut==2) {
+//                    $type = '<span class="text-primary"> Non en caisse</span>';
+//                }
+////                    $actionBtn = '<div class="d-flex"><a href="javascript:void(0)" class="edit btn btn-warning btn-sm"><i class="fa fa-edit"></i></a> <a href="javascript:void(0)" class="delete btn btn-danger btn-sm ml-1"  onclick="deleteFun()"><i class="fa fa-trash"></i></a></div>';
+//                return $type;
+//            })
             ->addColumn('action', function($value){
                 $charges = Charges::all();
                 $action = view('gestion.tache_action',compact('value','charges'));
@@ -122,7 +58,7 @@ public function loadTaches(){
                 $total = $value->nombre*$value->prix;
                 return $total;
             })
-            ->rawColumns(['action','total','statut'])
+            ->rawColumns(['action','total'])
             ->make(true);
 
     }
@@ -134,7 +70,6 @@ public function loadTaches(){
         $request->validate([
             'raison' => ['required', 'string', 'min:3'],
             'date_debut' => ['required'],
-            'idcharge' => ['required'],
             'prix' => ['required'],
             'nombre' => ['required'],
         ]);
@@ -152,45 +87,44 @@ public function loadTaches(){
                 'date_fin' => $request->date_debut,
                 'date_ajout' => date('Y-m-d'),
                 'iduser' => $iduser,
-                'idcharge' => $request->idcharge,
                 'prix' => $request->prix,
                 'nombre' => $request->nombre,
                 'statut' => $request->statut,
 
             ])
         ;
-        if ($save && $request->statut!=0) {
-
-            $statut = 1;
-            $factData = new Array_();
-            $factData->key = 'TACHE';
-            $factData->raison = 'Sortie pour les charges';
-            $factData->montant = $request->nombre * $request->prix;
-            $factData->description = $request->raison;
-//            if ($dataId) {
-//                $d = (new CaisseController())->removeFromCaisse($factData->id,'TACHE');
+//        if ($save) {
+//
+//            $statut = 1;
+//            $factData = new Array_();
+//            $factData->key = 'TACHE';
+//            $factData->raison = 'Sortie pour les charges';
+//            $factData->montant = $request->nombre * $request->prix;
+//            $factData->description = $request->raison;
+////            if ($dataId) {
+////                $d = (new CaisseController())->removeFromCaisse($factData->id,'TACHE');
+////            }
+//            if ($dataId>0) {
+//                $factData->id = $dataId;
+//            }else{
+//                $factData->id = $save->tache_id;
 //            }
-            if ($dataId>0) {
-                $factData->id = $dataId;
-            }else{
-                $factData->id = $save->tache_id;
-            }
-            if ($request->is_caisse==1) {
-                if ((new CaisseController())->soldeCaisse()>=$factData->montant) {
-                    if ((new CaisseController())->storeCaisse($factData)) {
-                        Taches::where('tache_id',$factData->id)->update(['statut'=>1]);
-                        $statut = 2;
-                    }else{
-                        Taches::where('tache_id',$factData->id)->update(['statut'=>0]);
-                    }
-                }else{
-                    Taches::where('tache_id',$factData->id)->update(['statut'=>0]);
-                    $statut = -1;
-                }
-            }
-
-        }
-        return Response()->json($statut);
+//            if ($request->is_caisse==1) {
+//                if ((new CaisseController())->soldeCaisse()>=$factData->montant) {
+//                    if ((new CaisseController())->storeCaisse($factData)) {
+//                        Taches::where('tache_id',$factData->id)->update(['statut'=>1]);
+//                        $statut = 2;
+//                    }else{
+//                        Taches::where('tache_id',$factData->id)->update(['statut'=>0]);
+//                    }
+//                }else{
+//                    Taches::where('tache_id',$factData->id)->update(['statut'=>0]);
+//                    $statut = -1;
+//                }
+//            }
+//
+//        }
+        return Response()->json($save);
 //        if ($save) {
 //            return redirect()->back()->with('success','Enregistré avec succès!');
 //

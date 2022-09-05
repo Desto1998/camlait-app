@@ -53,7 +53,7 @@
 
 
                                         <div class="text-center">
-                                            <button type="submit" class="btn btn-primary btn-block">Valider</button>
+                                            <button type="submit" class="btn btn-info btn-block">Valider</button>
                                         </div>
                                     </form>
 

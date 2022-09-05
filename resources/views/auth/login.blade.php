@@ -44,7 +44,7 @@
                                             </div>
                                             <div class="form-group">
                                                 @if (Route::has('password.request'))
-                                                    <a class="btn btn-link" href="{{ route('password.request') }}">
+                                                    <a class="btn btn-link text-info" href="{{ route('password.request') }}">
                                                         {{ __('Mot de passe oublié?') }}
                                                     </a>
                                                 @endif
@@ -52,7 +52,7 @@
                                             </div>
                                         </div>
                                         <div class="text-center">
-                                            <button type="submit" class="btn btn-primary btn-block">Se connecter</button>
+                                            <button type="submit" class="btn btn-info btn-block">Se connecter</button>
                                         </div>
                                     </form>
 

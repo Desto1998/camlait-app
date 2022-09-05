@@ -30,22 +30,22 @@
                             </div>
 
                             <div class="col-lg-3 col-sm-6">
-                                <a href="{{ route('gestion.caisses') }}">
+                                <a href="">
                                     <div class="card">
                                         <div class="stat-widget-one card-body">
                                             <div class="stat-icon d-inline-block">
-                                                <i class="fa fa-dollar {{ $solde<=0?'text-danger border-danger':'text-primary border-primary' }}"></i>
+                                                <i class="fa fa-dollar"></i>
                                             </div>
                                             <div class="stat-content d-inline-block">
                                                 <div class="stat-text">Solde</div>
-                                                <div class="stat-digit">{{ $solde }}</div>
+                                                <div class="stat-digit">0</div>
                                             </div>
                                         </div>
                                     </div>
                                 </a>
                             </div>
                             <div class="col-lg-3 col-sm-6">
-                                <a href="{{ route('gestion.entrees') }}">
+                                <a href="">
                                     <div class="card">
                                         <div class="stat-widget-one card-body">
                                             <div class="stat-icon d-inline-block">
@@ -53,7 +53,7 @@
                                             </div>
                                             <div class="stat-content d-inline-block">
                                                 <div class="stat-text">Entrées</div>
-                                                <div class="stat-digit">{{ $entre }}</div>
+                                                <div class="stat-digit">0</div>
                                             </div>
                                         </div>
                                     </div>
@@ -68,7 +68,7 @@
                                             </div>
                                             <div class="stat-content d-inline-block">
                                                 <div class="stat-text">Sorties</div>
-                                                <div class="stat-digit">{{ $sortie }}</div>
+                                                <div class="stat-digit">0</div>
                                             </div>
                                         </div>
                                     </div>
@@ -83,178 +83,7 @@
                                             </div>
                                             <div class="stat-content d-inline-block">
                                                 <div class="stat-text">Dépenses</div>
-                                                <div class="stat-digit">{{ count($taches) }}</div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </a>
-                            </div>
-                        </div>
-
-
-                        <div class="row">
-                            <div class="col-lg-3 col-sm-6">
-                                <a href="{{ route('devis.all') }}">
-                                    <div class="card">
-                                        <div class="stat-widget-two card-body">
-                                            <div class="stat-content">
-                                                <div class="stat-text">Devis non validés</div>
-                                                <div class="stat-digit"><i
-                                                        class=""></i>{{ count($devisNV) }}</div>
-                                            </div>
-                                            {{--                                            <div class="progress">--}}
-                                            {{--                                                <div class="progress-bar progress-bar-success w-25" role="progressbar"--}}
-                                            {{--                                                     aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"></div>--}}
-                                            {{--                                            </div>--}}
-                                        </div>
-                                    </div>
-                                </a>
-                            </div>
-                            <div class="col-lg-3 col-sm-6">
-                                <a href="{{ route('factures.all') }}">
-                                    <div class="card">
-                                        <div class="stat-widget-two card-body">
-                                            <div class="stat-content">
-                                                <div class="stat-text">Factures non validées</div>
-                                                <div class="stat-digit"><i
-                                                        class=""></i>{{ count($factureNV) }}</div>
-                                            </div>
-                                            {{--                                            <div class="progress">--}}
-                                            {{--                                                <div class="progress-bar progress-bar-success w-25" role="progressbar"--}}
-                                            {{--                                                     aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"></div>--}}
-                                            {{--                                            </div>--}}
-                                        </div>
-                                    </div>
-                                </a>
-                            </div>
-
-                            <div class="col-lg-3 col-sm-6">
-                                <a href="{{ route('commandes.all') }}">
-
-                                    <div class="card">
-                                        <div class="stat-widget-two card-body">
-                                            <div class="stat-content">
-                                                <div class="stat-text">Commandes non validées</div>
-                                                <div class="stat-digit"><i
-                                                        class=""></i>{{ count($commandesNV) }}
-                                                </div>
-                                            </div>
-                                            {{--                                            <div class="progress">--}}
-                                            {{--                                                <div class="progress-bar progress-bar-success w-25" role="progressbar"--}}
-                                            {{--                                                     aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"></div>--}}
-                                            {{--                                            </div>--}}
-                                        </div>
-                                    </div>
-
-                                </a>
-                            </div>
-
-                            <div class="col-lg-3 col-sm-6">
-                                <a href="{{ route('devis.all') }}">
-                                    <div class="card">
-                                        <div class="stat-widget-two card-body">
-                                            <div class="stat-content">
-                                                <div class="stat-text">Devis sans factures</div>
-                                                <div class="stat-digit"><i
-                                                        class=""></i>{{ count($devisSF) }}</div>
-                                            </div>
-                                            {{--                                            <div class="progress">--}}
-                                            {{--                                                <div class="progress-bar progress-bar-success w-25" role="progressbar"--}}
-                                            {{--                                                     aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"></div>--}}
-                                            {{--                                            </div>--}}
-                                        </div>
-                                    </div>
-                                </a>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-lg-8 col-sm-12">
-                                <div class="card">
-                                    <div class="stat-widget-two card-body">
-                                        <div class="stat-content">
-                                            <div class="stat-text h3">Dernières activités</div>
-                                            <div class="">
-                                                @if (count($lastactivity)>0)
-                                                    <label class="my-2 h4">Devis</label>
-                                                @endif
-
-                                                @foreach($lastactivity as $key=>$value)
-                                                    <a href="{{ route('devis.view',['id'=>$value->devis_id]) }}"
-                                                       class="row">
-                                                        <ul class="d-flex row col-md-12">
-                                                            <li class="col-md-5">{{ $value->objet }}</li>
-                                                            <li class="col-md-2">{{ $value->reference_devis }}</li>
-                                                            <li class="col-md-2">{{ $value->date_devis }}</li>
-                                                            <li class="col-md-3">{{ $value->lastname }}  {{ $value->lastname }}</li>
-                                                        </ul>
-                                                    </a>
-                                                @endforeach
-                                                @if (count($lastactivity1)>0)
-                                                    <label class="my-2 h4">Facture</label>
-                                                @endif
-
-                                                @foreach($lastactivity1 as $key=>$value)
-                                                    <a href="{{ route('factures.view',['id'=>$value->facture_id]) }}"
-                                                       class="row">
-                                                        <ul class="d-flex row col-md-12">
-                                                            <li class="col-md-5">{{ $value->objet }}</li>
-                                                            <li class="col-md-2">{{ $value->reference_fact }}</li>
-                                                            <li class="col-md-2">{{ $value->date_fact }}</li>
-                                                            <li class="col-md-3">{{ $value->lastname }}  {{ $value->lastname }}</li>
-                                                        </ul>
-                                                    </a>
-                                                @endforeach
-                                                    @if (count($lastactivity2)>0)
-                                                        <label class="my-2 h4">Commandes</label>
-                                                    @endif
-
-                                                @foreach($lastactivity2 as $key=>$value)
-                                                    <a href="{{ route('commandes.view',['id'=>$value->commande_id]) }}"
-                                                       class="row">
-                                                        <ul class="d-flex row col-md-12">
-                                                            <li class="col-md-5">{{ $value->objet }}</li>
-                                                            <li class="col-md-2">{{ $value->reference_commande }}</li>
-                                                            <li class="col-md-2">{{ $value->date_commande }}</li>
-                                                            <li class="col-md-3">{{ $value->lastname }}  {{ $value->firstname }}</li>
-                                                        </ul>
-                                                    </a>
-                                                @endforeach
-                                                    @if (count($lastactivity2)===0 && count($lastactivity1)===0 && count($lastactivity)===0)
-                                                       <h4 class="text-danger text-center my-4">Aucune activité durant les dernières 24h</h4>
-                                                    @endif
-                                            </div>
-                                        </div>
-
-                                    </div>
-                                </div>
-
-                            </div>
-                            <div class="col-lg-2 col-sm-6">
-                                <a href="{{ route('client.all') }}">
-                                    <div class="card">
-                                        <div class="stat-widget-one card-body">
-{{--                                            <div class="d-inline-block">--}}
-{{--                                                <i class="ti-user fs-1 text-success border-success"></i>--}}
-{{--                                            </div>--}}
-                                            <div class="stat-content d-inline-block">
-                                                <div class="stat-text">Clients</div>
-                                                <div class="stat-digit">{{ count($clients) }}</div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </a>
-                            </div>
-
-                            <div class="col-lg-2 col-sm-6">
-                                <a href="{{ route('fournisseur.all') }}">
-                                    <div class="card">
-                                        <div class="stat-widget-one card-body">
-{{--                                            <div class="stat-icon d-inline-block">--}}
-{{--                                                <i class="fa fa-users text-success border-success"></i>--}}
-{{--                                            </div>--}}
-                                            <div class="stat-content d-inline-block">
-                                                <div class="stat-text fs-6">Fournisseurs</div>
-                                                <div class="stat-digit">{{ count($fournisseurs) }}</div>
+                                                <div class="stat-digit">0</div>
                                             </div>
                                         </div>
                                     </div>

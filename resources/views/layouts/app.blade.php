@@ -7,7 +7,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>GSC-APP @yield('title')</title>
+    <title>CAMLAIT @yield('title')</title>
     @yield('css_before')
     <link rel="icon" type="image/png" sizes="16x16" href="{{asset('images/logo/logo_gssc.png')}}">
     <!-- Datatable css -->
@@ -15,7 +15,7 @@
 
     <!-- Scripts -->
     <!-- Toastr -->
-<!-- Fonts -->
+    <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
 
@@ -55,9 +55,9 @@
     ***********************************-->
     <div class="nav-header">
         <a href="{{ route('home') }}" class="brand-logo">
-{{--            <img class="logo-abbr" style="width: 60px;height: 40px" src="{{asset('images/logo/logo_gssc.png')}}"--}}
-{{--                 alt="Not found">--}}
-                        <img class="logo-compact" src="{{asset('images/logo/logo_gssc.png')}}" alt="">
+            {{--            <img class="logo-abbr" style="width: 60px;height: 40px" src="{{asset('images/logo/logo_gssc.png')}}"--}}
+            {{--                 alt="Not found">--}}
+            <img class="logo-compact" src="{{asset('images/logo/logo_gssc.png')}}" alt="">
             <img class="brand-title" style="width: 500px" src="{{asset('images/logo/logo_gssc.png')}}" alt="">
         </a>
 
@@ -80,14 +80,6 @@
                 <div class="collapse navbar-collapse justify-content-between">
                     <div class="header-left">
                         <div class="search_bar dropdown">
-{{--                                <span class="search_icon p-3 c-pointer" data-toggle="dropdown">--}}
-{{--                                    <i class="mdi mdi-magnify"></i>--}}
-{{--                                </span>--}}
-{{--                            <div class="dropdown-menu p-0 m-0">--}}
-{{--                                <form>--}}
-{{--                                    <input class="form-control" type="search" placeholder="Search" aria-label="Search">--}}
-{{--                                </form>--}}
-{{--                            </div>--}}
                         </div>
                     </div>
 
@@ -99,51 +91,11 @@
                             </a>
                             <div class="dropdown-menu dropdown-menu-right">
                                 <ul class="list-unstyled">
-                                    <a href="{{ route('notify.all') }}" class="all-notification" id="all-notification">Voir plus</a>
-{{--                                    <li class="media dropdown-item">--}}
-{{--                                        <span class="success"><i class="ti-user"></i></span>--}}
-{{--                                        <div class="media-body">--}}
-{{--                                            <a href="#">--}}
-{{--                                                <p><strong>Martin</strong> has added a <strong>customer</strong>--}}
-{{--                                                    Successfully--}}
-{{--                                                </p>--}}
-{{--                                            </a>--}}
-{{--                                        </div>--}}
-{{--                                        <span class="notify-time">3:20 am</span>--}}
-{{--                                    </li>--}}
-{{--                                    <li class="media dropdown-item">--}}
-{{--                                        <span class="primary"><i class="ti-shopping-cart"></i></span>--}}
-{{--                                        <div class="media-body">--}}
-{{--                                            <a href="#">--}}
-{{--                                                <p><strong>Jennifer</strong> purchased Light Dashboard 2.0.</p>--}}
-{{--                                            </a>--}}
-{{--                                        </div>--}}
-{{--                                        <span class="notify-time">3:20 am</span>--}}
-{{--                                    </li>--}}
-{{--                                    <li class="media dropdown-item">--}}
-{{--                                        <span class="danger"><i class="ti-bookmark"></i></span>--}}
-{{--                                        <div class="media-body">--}}
-{{--                                            <a href="#">--}}
-{{--                                                <p><strong>Robin</strong> marked a <strong>ticket</strong> as unsolved.--}}
-{{--                                                </p>--}}
-{{--                                            </a>--}}
-{{--                                        </div>--}}
-{{--                                        <span class="notify-time">3:20 am</span>--}}
-{{--                                    </li>--}}
-{{--                                    <li class="media dropdown-item">--}}
-{{--                                        <span class="primary"><i class="ti-heart"></i></span>--}}
-{{--                                        <div class="media-body">--}}
-{{--                                            <a href="#">--}}
-{{--                                                <p><strong>David</strong> purchased Light Dashboard 1.0.</p>--}}
-{{--                                            </a>--}}
-{{--                                        </div>--}}
-{{--                                        <span class="notify-time">3:20 am</span>--}}
-{{--                                    </li>--}}
-
+                                    <a href="{{ route('notify.all') }}" class="all-notification" id="all-notification">Voir
+                                        plus</a>
                                 </ul>
-                                <a href="#" class="all-notification" id="no-notification">Aucune notification pour l'instant</a>
-{{--                                <a class="all-notification" href="#">See all notifications <i--}}
-{{--                                        class="ti-arrow-right"></i></a>--}}
+                                <a href="#" class="all-notification" id="no-notification">Aucune notification pour
+                                    l'instant</a>
                             </div>
                         </li>
                         <li class="nav-item dropdown header-profile">
@@ -162,10 +114,6 @@
                                     <i class="icon-user"></i>
                                     <span class="ml-2">Profil </span>
                                 </a>
-{{--                                <a href="./email-inbox.html" class="dropdown-item">--}}
-{{--                                    <i class="icon-envelope-open"></i>--}}
-{{--                                    <span class="ml-2">Inbox </span>--}}
-{{--                                </a>--}}
 
                                 <form action="{{ route('logout') }}" method="post" id="logout-form">
                                     @csrf
@@ -193,103 +141,59 @@
     <div class="quixnav">
         <div class="quixnav-scroll">
             <ul class="metismenu" id="menu">
-            {{--                <li class="nav-label first">Tableau de bord</li>--}}
-            <!-- <li><a href="index.html"><i class="icon icon-single-04"></i><span class="nav-text">Dashboard</span></a>
-                </li> -->
+
                 <li><a class="" href="{{ route('home') }}" aria-expanded="false"><i
                             class="icon icon-home"></i><span class="nav-text">Tableau de bord</span></a>
                 </li>
-                <li class="nav-label">FACTURATION ET DEVIS</li>
-                @if (in_array('DE',\App\Models\User_menus::getUserMenu()))
-                    <li><a class="has-arrow" href="javascript:void(0);" aria-expanded="false"><i
-                                class="fa fa-database"></i><span class="nav-text">Dévis</span></a>
-                        <ul aria-expanded="false">
-                            <li><a href="{{ route('devis.all') }}">Gestion des dévis</a></li>
-                            <li><a href="{{ route('devis.add') }}">Créer un dévis</a></li>
-                            <li><a href="{{ route('bon.index') }}">Bons de livraisons</a></li>
-                        </ul>
-                    </li>
-                @endif
+                <li><a class="has-arrow" href="javascript:void(0);" aria-expanded="false"><i
+                            class="fa fa-file-archive-o"></i><span class="nav-text">Interventions</span></a>
+                    <ul aria-expanded="false">
+                        <li><a href="{{ route('activite.index') }}">Gestion des fiches</a></li>
+                        <li><a href="{{ route('activite.create') }}">Créer une fiche</a></li>
+                    </ul>
+                </li>
+                <li><a class="has-arrow" href="javascript:void(0);" aria-expanded="false"><i
+                            class="fa fa-pencil-square"></i><span class="nav-text">Gestion des B.T</span></a>
+                    <ul aria-expanded="false">
+                        <li><a href="{{ route('bt.index') }}">Gestion des bons de travail</a></li>
+                        <li><a href="{{ route('bt.create') }}">Créer un bon de travail</a></li>
+                    </ul>
+                </li>
+                <li><a class="has-arrow" href="javascript:void(0);" title="Gestion des demandes d'intervention" aria-expanded="false"><i
+                            class="fa fa-briefcase"></i><span class="nav-text">Gestion des D.I</span></a>
+                    <ul aria-expanded="false">
+                        <li><a href="{{ route('di.index') }}">Gestion des D.I</a></li>
+                        <li><a href="{{ route('di.create') }}">Créer une D.I</a></li>
+                    </ul>
+                </li>
 
-                @if (in_array('FA',\App\Models\User_menus::getUserMenu()))
-                <li><a class="has-arrow" href="javascript:void(0);" aria-expanded="false"><i
-                            class="fa fa-file"></i><span class="nav-text">Factures</span></a>
-                    <ul aria-expanded="false">
-                        <li><a href="{{ route('factures.all') }}">Gestion des factures</a></li>
-                        <li><a href="{{ route('factures.add') }}">Créer une facture</a></li>
-                        <li><a href="{{ route('avoir.index') }}">Factures avoirs</a></li>
-                        <li><a href="{{ route('history.index') }}">Historiques</a></li>
-                    </ul>
+                <li><a class="" href="{{ route('personnel.index') }}" aria-expanded="false"><i
+                            class="fa fa-users"></i><span class="nav-text">Personnels</span></a>
                 </li>
-                @endif
-                @if (in_array('CA',\App\Models\User_menus::getUserMenu()))
-                <li><a class="has-arrow" href="javascript:void(0);" aria-expanded="false"><i
-                            class="fa fa-cart-plus"></i><span class="nav-text">Commandes</span></a>
-                    <ul aria-expanded="false">
-                        <li><a href="{{ route('commandes.all') }}">Gestion des commandes</a></li>
-                        <li><a href="{{ route('commandes.add') }}">Créer une commande</a></li>
-                    </ul>
+                <li><a class="" href="{{ route('equipement.index') }}" aria-expanded="false"><i
+                            class="fa fa-database"></i><span class="nav-text">Equipements</span></a>
                 </li>
-                @endif
-                @if (in_array('CL',\App\Models\User_menus::getUserMenu()))
-                <li><a class="" href="{{ route('client.all') }}" aria-expanded="false"><i
-                            class="fa fa-users"></i><span class="nav-text">Clients</span></a>
-                </li>
-                @endif
-                @if (in_array('FR',\App\Models\User_menus::getUserMenu()))
-                <li><a class="" href="{{ route('fournisseur.all') }}" aria-expanded="false"><i
-                            class="mdi mdi-nature-people"></i><span class="nav-text">Fournisseurs</span></a>
-                </li>
-                @endif
-{{--                <li class="nav-label">PRODUITS</li>--}}
-                @if (in_array('PR',\App\Models\User_menus::getUserMenu()))
-                <li><a class="has-arrow" href="javascript:void(0);" aria-expanded="false"><i
-                            class="fa fa-product-hunt"></i><span class="nav-text">Produits</span></a>
-                    <ul aria-expanded="false">
-                        <li><a href="{{ route('produit.all') }}">Gestion des produits</a></li>
 
-                        <li><a href="{{ route('categorie.all') }}">Gestion des catégories</a></li>
-                        {{--                        <li><a href="{{ route('gestion.calendrier') }}">Calendrier</a></li>--}}
-                        {{--                        <li><a href="{{ route('gestion.calendrier') }}">Rapport</a></li>--}}
-                    </ul>
-                </li>
-                @endif
-                @if (in_array('DIV',\App\Models\User_menus::getUserMenu()))
-                    <li><a class="has-arrow" href="javascript:void(0);" aria-expanded="false"><i
-                                class="fa fa-xing"></i><span class="nav-text">Divers</span></a>
-                        <ul aria-expanded="false">
-                            <li><a href="{{ route('divers.proformat.add.form') }}">Créer une proformat</a></li>
-                            <li><a href="{{ route('divers.factures.add') }}">Créer une facture</a></li>
-                        </ul>
-                    </li>
-                @endif
-                <li class="nav-label">GESTION DE L'ENTREPRISE</li>
-                @if (in_array('GEC',\App\Models\User_menus::getUserMenu()))
-                    <li><a class="has-arrow" href="javascript:void(0);" aria-expanded="false"><i
-                                class="icon icon-payment"></i><span class="nav-text">Gestions</span></a>
-                        <ul aria-expanded="false">
-                            <li><a href="{{ route('gestion.index') }}">Charges</a></li>
-                            <li><a href="{{ route('gestion.tache') }}">{{--Tâches--}} Dépenses</a></li>
-                            <li><a href="{{ route('gestion.entrees') }}">{{--Tâches--}} Encaissements</a></li>
-                        </ul>
-                    </li>
-                @endif
-                @if (in_array('GCA',\App\Models\User_menus::getUserMenu()))
-                    <li><a class="" href="{{ route('gestion.caisses') }}" aria-expanded="false"><i
-                                class="fa fa-dollar"></i><span class="nav-text">Caisses</span></a>
-                    </li>
-                @endif
-                @if (in_array('GER',\App\Models\User_menus::getUserMenu()))
+
+{{--                <li><a class="" href="{{ route('gestion.caisses') }}" aria-expanded="false"><i--}}
+{{--                            class="fa fa-dollar"></i><span class="nav-text">Caisses</span></a>--}}
+{{--                </li>--}}
+
                 <li><a class="has-arrow" href="javascript:void(0);" aria-expanded="false"><i
                             class="fa fa-file-pdf-o"></i><span class="nav-text">Rapports</span></a>
                     <ul aria-expanded="false">
                         <li><a href="{{ route('rapport.charge') }}">Rapport des dépenses</a></li>
-                        <li><a href="{{ route('rapport.vente') }}">Rapport des ventes</a></li>
+{{--                        <li><a href="{{ route('rapport.vente') }}">Rapport des ventes</a></li>--}}
                     </ul>
                 </li>
-                @endif
+                <li><a class="has-arrow" href="javascript:void(0);" aria-expanded="false"><i
+                            class="icon icon-payment"></i><span class="nav-text">Gestions dépenses</span></a>
+                    <ul aria-expanded="false">
+                        <li><a href="{{ route('gestion.tache') }}">{{--Tâches--}} Dépenses</a></li>
+                    </ul>
+                </li>
 
-                @if (Auth::user()->is_admin==1 && in_array('US',\App\Models\User_menus::getUserMenu()))
+                @if (Auth::user()->is_admin==1)
                     <li class="nav-label">GESTION DES UTILISATEURS</li>
                     <li><a class="has-arrow" href="javascript:void(0);" aria-expanded="false"><i
                                 class="icon icon-users-mm"></i><span class="nav-text">Comptes</span></a>
@@ -370,6 +274,6 @@
 
 @include('_partial._toastr-message')
 @yield('script')
-@include('scripts.dashboard')
+{{--@include('scripts.dashboard')--}}
 </body>
 </html>

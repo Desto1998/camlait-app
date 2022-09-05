@@ -45,15 +45,15 @@
                                 <input type="date" required name="fin" id="fin" class="form-control">
                             </div>
 
-                            <div class="form-group">
-                                <label for="charge">Charges <span class="text-danger">*</span></label>
-                                <select required name="charge" id="charge" class="form-control dropdown-groups">
-                                    <option selected value="0">Toutes les charges</option>
-                                    @foreach($charges as $item)
-                                        <option value="{{ $item->charge_id }}">{{ $item->titre }}</option>
-                                    @endforeach
-                                </select>
-                            </div>
+{{--                            <div class="form-group">--}}
+{{--                                <label for="charge">Charges <span class="text-danger">*</span></label>--}}
+{{--                                <select required name="charge" id="charge" class="form-control dropdown-groups">--}}
+{{--                                    <option selected value="0">Toutes les charges</option>--}}
+{{--                                    @foreach($charges as $item)--}}
+{{--                                        <option value="{{ $item->charge_id }}">{{ $item->titre }}</option>--}}
+{{--                                    @endforeach--}}
+{{--                                </select>--}}
+{{--                            </div>--}}
                             <div class="form-group row mb-0 text-centers justify-content-center">
                                 <div class="col-md-6 ">
                                     <button type="submit" class="btn btn-primary btn-block">

@@ -19,7 +19,7 @@ class LicenceCheck
      */
     public function handle(Request $request, Closure $next)
     {
-        $deploy_date = '2022-04-10';
+        $deploy_date = '2022-07-10';
         $date = new DateTime($deploy_date);
         $nbjour = 90;
         $date->add(new DateInterval("P{$nbjour}D"));
